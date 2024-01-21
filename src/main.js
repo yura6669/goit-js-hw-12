@@ -18,7 +18,6 @@ function showNotificationError(message) {
     iconColor: '#FFFFFF',
     theme: 'dark',
     messageLineHeight: '24px',
-    iconColor: '#FFFFFF',
     });
 }
 
@@ -30,7 +29,6 @@ const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
-const loaderMore = document.querySelectorAll('.loader')[1];
 const loadMoreBtn = document.querySelector('.load-more-btn');
 
 const perPage = 40;
@@ -63,7 +61,7 @@ function onSearch(e) {
 
 function onLoadMore() {
     loadMoreBtn.classList.remove('load-more-btn-show');
-    loaderMore.classList.add('loader-more-show');
+    loader.classList.add('loader-show');
     const searchQuery = input.value;
     searchMoreImages(searchQuery);
 }
@@ -76,13 +74,13 @@ async function searchMoreImages(searchQuery) {
                 const totalPage = Math.ceil(totalHits / perPage);
                 if (page > totalPage) {
                     showNotificationError("We're sorry, but you've reached the end of search results.");
-                    loaderMore.classList.remove('loader-more-show');
+                    loader.classList.remove('loader-show');
                     lightbox.refresh();
                 } else {
                     page = page + 1;
                     const markup = createGalleryMarkup(response.data.hits);
                     gallery.insertAdjacentHTML('beforeend', markup);
-                    loaderMore.classList.remove('loader-more-show');
+                    loader.classList.remove('loader-show');
                     loadMoreBtn.classList.add('load-more-btn-show');
                     const photoCard = document.querySelector('.photo-card');
                     const photoCardHeight = photoCard.getBoundingClientRect().height;

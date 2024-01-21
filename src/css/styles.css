@@ -95,10 +95,6 @@ button:hover {
   display: flex;
 }
 
-.loader-more-show {
-  display: flex;
-}
-
 .loader:before,
 .loader:after {
   border-radius: 50%;
